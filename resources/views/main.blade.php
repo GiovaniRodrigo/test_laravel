@@ -24,7 +24,7 @@
 
             <button style="width:100%;height:100%;" onclick="showContar()">contar</button>
 
-            <button style="width:100%;height:100%;" onclick="cadastro()">cadastro</button>
+            <a href="carros/create"><button style="width:100%;height:100%;">cadastro</button></a>
 
 
 
@@ -46,26 +46,7 @@
             <div id="contar" style="display:none">
                 Mostrar o numero de litrso disponiveis
             </div>
-            <div id="cadastro" style="display:none">
-                @foreach($carros as $carro)
-                <p style="background-color:tomato;">
-                    <tr>
-                        <td scropt="row">{{ $loop->index + 1 }}</td>
-                        -
-                        <td >{{ $carro->capacidade }}</td>
-                        -
-                        <td >{{ $carro->portador }}</td>
-                        <td>
-                            <a href="/carros/edit/{{ $carro->id }}" class="btn btn-info edit-btn"> <ion-icon name="create-outline"></ion-icon> Editar</a>
-                            <form action="/carros/{{ $carro->id }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Deletar</button>
-                            </form>
-                        </td>
-                    </tr>
-                </p>
-            @endforeach
+
             </div>
             <button style="display: none;" id="enviar">Enviar</button>
             <button style="display:none;" id="cancelar" onclick="cancelar()">Cancelar</button>
@@ -120,19 +101,6 @@
         document.getElementById("contar").style.display = "none";
         document.getElementById("enviar").style.display = "none";
     }
-    function cadastro () {
-        let d = document.getElementById("cadastro").style.display;
 
-        if(d!="none"){
-            document.getElementById("cadastro").style.display = "block";
-            document.getElementById("enviar").style.display = "none";
-        }else{
-            document.getElementById("cadastro").style.display = "block";
-            document.getElementById("rodar").style.display = "none";
-            document.getElementById("abastecer").style.display = "none";
-            document.getElementById("enviar").style.display = "none";
-            document.getElementById("contar").style.display = "none";
-        }
-    }
 </script>
 </html
