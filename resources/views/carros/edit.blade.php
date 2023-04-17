@@ -9,7 +9,7 @@
     <body>
         <table>
             <tr>
-                <form action="/carros/update/{{ $carro->carro_pk }}" method="post">
+                <form action="/carros/update/{{ $carro->id }}" method="post">
                     @csrf
                     @method('PUT')
                     <table>

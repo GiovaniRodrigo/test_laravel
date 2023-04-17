@@ -27,23 +27,23 @@ class CarroController extends Controller
         return redirect('/')->with('msg', 'Inclusão realizada!');
     }
 
-    public function destroy($carro_pk){
+    public function destroy($id){
 
-        Carro::where('carro_pk',$carro_pk)->delete();
+        Carro::where('id',$id)->delete();
 
         return redirect('/')->with('msg', 'Exclusão realizada!');
     }
 
-    public function edit($carro_pk){
+    public function edit($id){
 
-        $carro = Carro::where('carro_pk',$carro_pk)->first();
+        $carro = Carro::where('id',$id)->first();
 
         return view('carros.edit',['carro' => $carro]);
     }
 
     public function update(Request $request){
         
-        Carro::where('carro_pk',$request->carro_pk)->update(
+        Carro::where('id',$request->id)->update(
             [
                 "capacidade" => $request->capacidade,
                 "portador" => $request->portador
