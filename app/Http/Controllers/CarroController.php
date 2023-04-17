@@ -24,6 +24,9 @@ class CarroController extends Controller
         $carro->capacidade       = $request->capacidade;
         $carro->portador         = $request->portador;
         $carro->quantia          = $request->quantia;
+        $carro->qnt_gasta        = $request->qnt_gasta;
+        $carro->qnt_abast1       = $request->qnt_abast1;
+        $carro->saldo_tanque     = $request->saldo_tanque;
 
         $carro->save();
 
@@ -31,7 +34,6 @@ class CarroController extends Controller
     }
 
     public function destroy($id){
-
         Carro::where('id',$id)->delete();
 
         return redirect('/')->with('msg', 'Exclusão realizada!');
@@ -45,12 +47,31 @@ class CarroController extends Controller
     }
 
     public function update(Request $request){
-        //dd($request);
+
+        //soma quantia presente no carro com a ser inserida
+        $aux1 = $request->quantia;
+        $aux2 = Carro::findOrFail($request->id);
+        $aux3 = $aux2->quantia;
+        $soma = $aux3 + $aux1;
+
+        //calcula saldo do tanque
+        $aux5 = Carro::findOrFail($request->id);
+        $aux6 = $request->qnt_gasta;    //quantia gasta
+        //quantia + quantia abastecida1 -
+        $aux7 = $aux5->quantia;          //quantia abastecida
+        $aux8 = $aux5->qnt_abast1;      //quantia abastecimento 1
+        $saldo_tanque = $aux8 + $aux7 - $aux6;
+
+        //dd($saldo_tanque);
+
         Carro::where('id',$request->id)->update(
             [
                 "capacidade" => $request->capacidade,
                 "portador" => $request->portador,
-                "quantia" => $request->quantia
+                "quantia" => $soma,
+                "qnt_gasta" => $request->qnt_gasta,
+                "qnt_abast1" => $request->qnt_abast1,
+                "saldo_tanque" => $request->saldo_tanque
             ]
         );
 

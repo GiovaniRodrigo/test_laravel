@@ -18,6 +18,9 @@ class CreateConsumoCombustivelTable extends Migration
             $table->decimal('capacidade',8,2);
             $table->string('portador');
             $table->decimal('quantia',8,2);
+            $table->decimal('qnt_gasta',8,2);
+            $table->decimal('qnt_abast1',8,2);
+            $table->decimal('saldo_tanque',8,2);
             $table->timestamps();
         });
     }

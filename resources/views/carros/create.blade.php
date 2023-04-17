@@ -32,6 +32,10 @@
                                 <td>Quantia:</td>
                                 <td><input type="text" name="quantia" maxlength="250" value="0"><br></td>
                             </tr>
+                            <tr style="display:none">
+                                <td>qnt-rodada:</td>
+                                <td><input type="text" name="qnt_rodada" maxlength="250" value="0"><br></td>
+                            </tr>
                             <tr>
                                 <td><input type="submit" value="Executar"></td>
                             </tr>
@@ -50,7 +54,7 @@
                             -
                             <td >{{ $carro->portador }}</td>
                             <td>
-                                <a href="/carros/edit/{{ $carro->id }}" class="btn btn-info edit-btn"> <ion-icon name="create-outline"></ion-icon> Editar</a>            
+                                <a href="/carros/edit/{{ $carro->id }}" class="btn btn-info edit-btn"> <ion-icon name="create-outline"></ion-icon> Editar</a>
                                 <form action="/carros/{{ $carro->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')

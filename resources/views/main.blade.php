@@ -29,46 +29,64 @@
                 id
             </div>
             <div style="position:relative; left:10px;">
-                Qnt. <br>Inserida
+                Cap. tanque
             </div>
-            <div>
+            <div style="position:relative; left:40px;">
                 Portador
             </div>
             <div style="position:relative; left:100px;">
-                Abastecer
+                Qnt. gasta            </div>
+            <div style="position:relative; left:200px;">
+                Qnt. do 1° abastecimento
+            </div>
+            <div style="position:relative; left:220px;">
+                Saldo do tanque
             </div>
             <div style="position:relative; left:300px;">
-                Saldo do tanque
+                Qnt. adicionada
+            </div>
+            <div style="position:relative; left:330px;">
+                Acoes
+            </div>
+            <div style="position:relative; left:410px;">
+                Status
             </div>
         </div>
 
 
         @isset($carros)
         @foreach($carros as $carro)
-        <div style="display: flex;width:100%;background-color:tomato;">
-            <p >
+        <div style="display: flex;width:100%;background-color:tomato;padding:20px;">
+            <p style="min-width:100px;max-width:100px;">
                 <tr style="border-color:black;">
-                    <td scropt="row" > {{ $loop->index + 1 }}</td>
+                    <td scropt="row"> {{ $loop->index + 1 }}</td>
                     -
-                    <td >{{ $carro->capacidade }}</td>
+                    <td ><p style="position:relative;left:-55px;">{{ $carro->capacidade }}</p></td>
                     -
-                    <td >{{ $carro->portador }}</td>
+                    <td > <p style="min-width:100px;max-width:100px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;
+                        -webkit-line-clamp: 1; // Quantidade de linhas
+                        -webkit-box-orient: vertical;position:relative;left:40px;align-items:center;">{{ $carro->portador }}</p></td>
                     <td>
                         <div style="display:flex;">
                             <div>
 
                                 <div style="">
-                                    <form action="/carros/update/{{ $carro->id }}" method="POST">
+                                    <form action="/carros/update/{{ $carro->id }}" method="POST" style="display:flex;flex-wrap:nowrap;justify-content:space-between;gap:20px;">
                                         @csrf
                                         @method('PUT')
                                         <div style="height:100px"></div>
                                         <div style="display:block; padding:10px;">
-                                            <input id="abastecer" type="number" name="abastecer" size="2" onkeyup="abastecer()">
+                                            <input id="quantia-rodada" type="number" name="qnt_gasta" size="2" placeholder="{{$carro->qnt_gasta}}" style="">
+                                        </div>
+                                        <div style="display:block; padding:10px;">
+                                            <input id="abastecer" type="number" name="qnt_abast1" size="2" placeholder="{{$carro->qnt_abast1}}" style="position: relative;left:20px;">
                                         </div>
                                         <div id="rodar" style="display:block;margin:5px;">
-                                            <input id="rodar" type="number" name="rodar" size="2" onkeyup="rodar()">
+                                            <!--$rodar = qauntia gasta - quantia total-->
+                                            <?php echo $carro->saldo_tanque;?>
+                                            <input id="rodar" type="number" name="saldo_tanque" size="2" readonly placeholder="{{$carro->saldo_tanque}}">
                                         </div>
-                                        <input id="quantia" type="number" name="quantia" value="{{ $carro->quantia }}" size="2">
+                                        <input id="quantia" type="number" name="quantia" placeholder="Exemplo: 5.5" size="2" >
                                         <input style="display:none" type="text" name="portador" value="{{ $carro->portador }}" >
                                         <input style="display:none" type="number" name="capacidade" value="{{ $carro->capacidade }}">
 
@@ -78,6 +96,9 @@
                                         </div>
                                         <div>
                                             <button type="submit" style="display: block;margin:5px;" id="enviar">Enviar</button>
+                                        </div>
+                                        <div>
+                                            Status<!--status(alerta, inativo e ativo), alerta quando saldo for menor que 5L-->
                                         </div>
 
                                     </form>
@@ -93,71 +114,4 @@
     @endisset
 
     </body>
-    <script>
-        function abastecer() {
-            alert("teste");
-            let abastecer = parseInt(document.getElementById("abastecer"));
-            let quantia = parseInt(document.getElementById("quantia"));
-            if(valida()){
-                quantia.value = abastecer + quantia;
-            }
-        }
-        function rodar() {
-            let abastecer = parseInt(document.getElementById("rodar"));
-            let quantia = parseInt(document.getElementById("quantia"));
-            quantia.value = abastecer - quantia;
-        }
-        function valida() {
-            let abastecer = parseInt(document.getElementById("abastecer"));
-            let quantia = parseInt(document.getElementById("quantia"));
-            let capacidade = parseInt(document.getElementById("capacidade"));
-            let result = abastecer + quantia;
-            if(result > capacidade){
-                alert("Quantidade a abastecer é maior que o suportado pelo veículo.");
-                return true;
-            }
-            return false;
-        }
-        function show ($receber) {
-            let d = document.getElementById("abastecer"+$receber).style.display;
-
-            if(d!="block"){
-                document.getElementById("abastecer"+$receber).style.display = "block";
-                document.getElementById("btn-abastecer"+$receber).style.display = "none";
-            }else{
-                document.getElementById("abastecer"+$receber).style.display = "none";
-                document.getElementById("btn-abastecer"+$receber).style.display = "none";
-            }
-        }
-        function showRodar () {
-            let d = document.getElementById("rodar").style.display;
-
-            if(d!="block"){
-                document.getElementById("rodar").style.display = "block";
-                document.getElementById("enviar").style.display = "block";
-            }else{
-                document.getElementById("rodar").style.display = "block";
-                document.getElementById("abastecer").style.display = "block";
-                document.getElementById("contar").style.display = "block";
-                document.getElementById("enviar").style.display = "block";
-            }
-        }
-        function showContar () {
-            let d = document.getElementById("contar").style.display;
-
-            if(d!="block"){
-                document.getElementById("contar").style.display = "block";
-                document.getElementById("enviar").style.display = "block";
-            }else{
-                document.getElementById("contar").style.display = "block";
-                document.getElementById("rodar").style.display = "block";
-                document.getElementById("abastecer").style.display = "block";
-                document.getElementById("enviar").style.display = "block";
-            }
-        }
-        function cancelar () {
-            document.getElementById("btn-abastecer").style.display = "block";
-        }
-
-    </script>
 </html

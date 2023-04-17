@@ -15,7 +15,10 @@ class MainController extends Controller
     }
 
     public function abastecer (Request $carro){
-        //fazer cálculo
+        //realiza soma do valor no banco de dados com o valor recebido da Main
+        dd((Carro::findOrFail($carro->abastecer)));
+        $soma = ($carro -> quantia)+(Carro::findOrFail($carro->abastecer));
+
         //dd($carro);
         $url = '/carros/update/'+$carro->id;
         Route::put($url,[CarroController::class,'update']);
