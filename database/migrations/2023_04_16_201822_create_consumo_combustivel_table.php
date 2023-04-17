@@ -13,10 +13,10 @@ class CreateConsumoCombustivelTable extends Migration
      */
     public function up()
     {
-        Schema::create('consumo_combustivel', function (Blueprint $table) {
+        Schema::create('carros', function (Blueprint $table) {
             $table->id();
-            $table->decimal('capacity',8,2);
-            $table->string('carrier')->unique();
+            $table->decimal('capacidade',8,2);
+            $table->string('portador');
             $table->timestamps();
         });
     }
