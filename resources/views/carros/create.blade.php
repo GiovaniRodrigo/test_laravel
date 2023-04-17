@@ -12,16 +12,21 @@
                 <form action="/carros" method="post">
                     @csrf
                     <table>
-                        <h2> CREATE </h2> <br>
+                        <h2> Cadastrar carro </h2> <br>
                         <h3>Informe os campos para adicionar um carro:</h3><br>
                         <h4>
                             <tr>
-                                <td>Capacidade: </td>
-                                <td><input type="text" name="capacidade" maxlength="250"><br></td>
-                            </tr>
-                            <tr>
                                 <td>Portador:</td>
                                 <td><input type="text" name="portador" maxlength="250"><br></td>
+                            </tr>
+                            <tr>
+                                <td>Capacidade:</td>
+                                <td>
+                                    <input type="radio" name="capacidade" value=50>50
+                                    <input type="radio" name="capacidade" value=55>55
+                                    <input type="radio" name="capacidade" value=40>40
+                                    <br><br>
+                                </td>
                             </tr>
                             <tr>
                                 <td><input type="submit" value="Executar"></td>
@@ -32,10 +37,13 @@
             </tr>
             <br><br>
             @foreach($carros as $carro)
-                <?php echo $carros ?>
                 <p style="background-color:tomato;">
                     <tr>
                         <td scropt="row">{{ $loop->index + 1 }}</td>
+                        -
+                        <td >{{ $carro->capacidade }}</td>
+                        -
+                        <td >{{ $carro->portador }}</td>
                         <td>
                             <a href="/carros/edit/{{ $carro->id }}" class="btn btn-info edit-btn"> <ion-icon name="create-outline"></ion-icon> Editar</a>            
                             <form action="/carros/{{ $carro->id }}" method="POST">

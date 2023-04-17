@@ -13,12 +13,17 @@
                     @csrf
                     @method('PUT')
                     <table>
-                        <h2> UPDATE </h2> <br>
+                        <h2> Alterar carro </h2> <br>
                         <h3>Edite os campos desejados:</h3><br>
                         <h4>
                             <tr>
-                                <td>Capacidade: </td>
-                                <td><input type="text" name="capacidade" maxlength="250" value="{{ $carro->capacidade }}"><br></td>
+                                <td>Capacidade:</td>
+                                <td>
+                                    <input type="radio" name="capacidade" value=50 {{ $carro->capacidade == 50 ? "checked" : ""}}>50
+                                    <input type="radio" name="capacidade" value=55 {{ $carro->capacidade == 55 ? "checked" : ""}}>55
+                                    <input type="radio" name="capacidade" value=40 {{ $carro->capacidade == 40 ? "checked" : ""}}>40
+                                    <br><br>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Portador:</td>
