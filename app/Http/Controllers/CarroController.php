@@ -9,11 +9,13 @@ class CarroController extends Controller
 {
     public function list(){
         $carros = Carro::all();
+
         return view('carros.create',['carros' => $carros]);
     }
 
     public function create(){
-        return view('carros.create');
+        $carros = Carro::all();
+        return view('carros.create', ['carros' => $carros]);
     }
 
     public function store(Request $request){
@@ -21,6 +23,7 @@ class CarroController extends Controller
 
         $carro->capacidade       = $request->capacidade;
         $carro->portador         = $request->portador;
+        $carro->quantia          = $request->quantia;
 
         $carro->save();
 
