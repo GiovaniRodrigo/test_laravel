@@ -52,6 +52,29 @@
             <button style="display:none;" id="cancelar" onclick="cancelar()">Cancelar</button>
         </form>
     </section>
+    <div>
+        @isset($carros)
+        @foreach($carros as $carro)
+            <p style="background-color:tomato;">
+                <tr>
+                    <td scropt="row">{{ $loop->index + 1 }}</td>
+                    -
+                    <td >{{ $carro->capacidade }}</td>
+                    -
+                    <td >{{ $carro->portador }}</td>
+                    <td>
+                        <a href="/carros/edit/{{ $carro->id }}" class="btn btn-info edit-btn"> <ion-icon name="create-outline"></ion-icon> Editar</a>
+                        <form action="/carros/{{ $carro->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            </p>
+        @endforeach
+    @endisset
+    </div>
 
 </body>
 <script>
