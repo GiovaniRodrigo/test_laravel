@@ -29,6 +29,10 @@
                                 <td>Portador:</td>
                                 <td><input type="text" name="portador" maxlength="250" value="{{ $carro->portador }}"><br></td>
                             </tr>
+                            <tr style="display:none;">
+                                <td>Quantia:</td>
+                                <td><input type="text" name="quantia" maxlength="250" value="{{ $carro->quantia }}"><br></td>
+                            </tr>
                             <tr>
                                 <td><input type="submit" value="Executar"></td>
                             </tr>

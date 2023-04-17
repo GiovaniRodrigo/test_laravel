@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Models\Carro;
 use App\Http\Controllers\CarroController;
 
@@ -13,9 +14,11 @@ class MainController extends Controller
         return view('main',['carros' => $carros]);
     }
 
-    public function abastecer ($carro){
+    public function abastecer (Request $carro){
         //fazer cálculo
-        CarroController::update($carro);
+        //dd($carro);
+        $url = '/carros/update/'+$carro->id;
+        Route::put($url,[CarroController::class,'update']);
         return view('main');
     }
 }

@@ -45,11 +45,12 @@ class CarroController extends Controller
     }
 
     public function update(Request $request){
-        
+        //dd($request);
         Carro::where('id',$request->id)->update(
             [
                 "capacidade" => $request->capacidade,
-                "portador" => $request->portador
+                "portador" => $request->portador,
+                "quantia" => $request->quantia
             ]
         );
 

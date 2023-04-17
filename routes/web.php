@@ -6,7 +6,7 @@ use App\Http\Controllers\MainController;
 
 //Main
 Route::get('/', [MainController::class, 'index']);
-Route::post('/abastecer', [MainController::class, 'abastecer']);
+Route::post('/abastecer/{carro}', [MainController::class, 'abastecer']);
 
 //Carros
 Route::get('/list', [CarroController::class, 'list']);
