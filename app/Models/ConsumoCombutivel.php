@@ -1,7 +1,11 @@
 <?php
 
+namespace App\Models;
 
-class ConsumoCombustivel
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\database\Eloquent\Model;
+
+class ConsumoCombustivel extends
 {
     public string $numeroSerie;
     public float $capacidade;
