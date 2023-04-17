@@ -7,13 +7,15 @@ use App\Models\Carro;
 
 class CarroController extends Controller
 {
-    public function index(){
+    public function list(){
         $carros = Carro::all();
+
         return view('carros.create',['carros' => $carros]);
     }
 
     public function create(){
-        return view('carros.create');
+        $carros = Carro::all();
+        return view('carros.create', ['carros' => $carros]);
     }
 
     public function store(Request $request){
@@ -21,6 +23,7 @@ class CarroController extends Controller
 
         $carro->capacidade       = $request->capacidade;
         $carro->portador         = $request->portador;
+        $carro->quantia          = $request->quantia;
 
         $carro->save();
 
@@ -42,11 +45,12 @@ class CarroController extends Controller
     }
 
     public function update(Request $request){
-        
+        //dd($request);
         Carro::where('id',$request->id)->update(
             [
                 "capacidade" => $request->capacidade,
-                "portador" => $request->portador
+                "portador" => $request->portador,
+                "quantia" => $request->quantia
             ]
         );
 
