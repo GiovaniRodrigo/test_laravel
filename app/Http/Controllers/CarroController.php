@@ -71,7 +71,7 @@ class CarroController extends Controller
                 "quantia" => $soma,
                 "qnt_gasta" => $request->qnt_gasta,
                 "qnt_abast1" => $request->qnt_abast1,
-                "saldo_tanque" => $request->saldo_tanque
+                "saldo_tanque" => $saldo_tanque
             ]
         );
 
