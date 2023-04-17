@@ -63,10 +63,10 @@
                                         @method('PUT')
                                         <div style="height:100px"></div>
                                         <div style="display:block; padding:10px;">
-                                            <input id="abastecer" type="number" name="abastecer" size="2" onkeyup="abastecer(this.id)">
+                                            <input id="abastecer" type="number" name="abastecer" size="2" onkeyup="abastecer()">
                                         </div>
                                         <div id="rodar" style="display:block;margin:5px;">
-                                            <input id="rodar" type="number" name="rodar" size="2" onkeyup="rodar(this.id);">
+                                            <input id="rodar" type="number" name="rodar" size="2" onkeyup="rodar()">
                                         </div>
                                         <input id="quantia" type="number" name="quantia" value="{{ $carro->quantia }}" size="2">
                                         <input style="display:none" type="text" name="portador" value="{{ $carro->portador }}" >
@@ -94,23 +94,23 @@
 
     </body>
     <script>
-        function abastecer(x) {
+        function abastecer() {
             alert("teste");
-            let abastecer = parseInt(document.getElementById("abastecer",10).value);
-            let quantia = parseInt(document.getElementById("quantia",10).value);
+            let abastecer = parseInt(document.getElementById("abastecer"));
+            let quantia = parseInt(document.getElementById("quantia"));
             if(valida()){
-                document.getElementById("quantia").value = abastecer + quantia;
+                quantia.value = abastecer + quantia;
             }
         }
-        function rodar(x) {
-            let abastecer = parseInt(document.getElementById("rodar",10).value);
-            let quantia = parseInt(document.getElementById("quantia",10).value);
-            document.getElementById("quantia").value = abastecer - quantia;
+        function rodar() {
+            let abastecer = parseInt(document.getElementById("rodar"));
+            let quantia = parseInt(document.getElementById("quantia"));
+            quantia.value = abastecer - quantia;
         }
         function valida() {
-            let abastecer = parseInt(document.getElementById("abastecer",10).value);
-            let quantia = parseInt(document.getElementById("quantia",10).value);
-            let capacidade = parseInt(document.getElementById("capacidade",10).value);
+            let abastecer = parseInt(document.getElementById("abastecer"));
+            let quantia = parseInt(document.getElementById("quantia"));
+            let capacidade = parseInt(document.getElementById("capacidade"));
             let result = abastecer + quantia;
             if(result > capacidade){
                 alert("Quantidade a abastecer é maior que o suportado pelo veículo.");
