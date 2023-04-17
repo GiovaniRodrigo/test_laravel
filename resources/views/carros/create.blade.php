@@ -30,6 +30,24 @@
                     </table>
                 </form>
             </tr>
+            <br><br>
+            @foreach($carros as $carro)
+                <p style="background-color:tomato;">
+                    <tr>
+                        <td scropt="row">{{ $loop->index + 1 }}</td>
+                        <td><a href="/carros/{{ $carro->carro_pk }}">{{ $carro->portador }}</a></td>
+                        <td>
+                            <a href="/carros/edit/{{ $carro->carro_pk }}" class="btn btn-info edit-btn"> <ion-icon name="create-outline"></ion-icon> Editar</a>            
+                            <form action="/carros/{{ $carro->carro_pk }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Deletar</button>
+                            </form>
+                        </td>
+                    </tr>
+                </p>
+            @endforeach
+            <br><br>
         </table>
     </body>
 </html>

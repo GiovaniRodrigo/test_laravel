@@ -9,7 +9,7 @@ class CarroController extends Controller
 {
     public function index(){
         $carros = Carro::all();
-        return view('main',['carros' => $carros]);
+        return view('carros.create',['carros' => $carros]);
     }
 
     public function create(){
