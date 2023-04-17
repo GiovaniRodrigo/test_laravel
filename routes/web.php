@@ -2,9 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarroController;
+use App\Http\Controllers\MainController;
 
+//Main
+Route::get('/', [MainController::class, 'index']);
+Route::post('/abastecer', [MainController::class, 'abastecer']);
 
-Route::get('/', [CarroController::class, 'index']);
+//Carros
+Route::get('/list', [CarroController::class, 'list']);
 Route::get('/carros/create', [CarroController::class, 'create']);
 Route::post('/carros',[CarroController::class,'store']);
 Route::delete('/carros/{id}',[CarroController::class,'destroy']);

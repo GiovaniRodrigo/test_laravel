@@ -28,20 +28,24 @@
 
     </section>
     <section style="position: relative; left:15%;">
-        <div style="height:100px"></div>
-        <div id="abastecer" style="display:none">
-            <label for="">Insira a quantia a ser inserida no carro: </label>
-            <input type="number">
-        </div>
-        <div id="rodar" style="display:none">
-            <label for="">Insira a quantia de litros utiliizados: </label>
-            <input type="number">
-        </div>
-        <div id="contar" style="display:none">
-            Mostrar o numero de litrso disponiveis
-        </div>
-        <button style="display: none;" id="enviar">Enviar</button>
-        <button style="display:none;" id="cancelar" onclick="cancelar()">Cancelar</button>
+        <form method="post" action="/main/abastecer/{{ $carros }}">
+            @csrf
+            @method('PUT')
+            <div style="height:100px"></div>
+            <div id="abastecer" style="display:none">
+                <label for="">Insira a quantia a ser inserida no carro: </label>
+                <input type="number">
+            </div>
+            <div id="rodar" style="display:none">
+                <label for="">Insira a quantia de litros utiliizados: </label>
+                <input type="number">
+            </div>
+            <div id="contar" style="display:none">
+                Mostrar o numero de litrso disponiveis
+            </div>
+            <button style="display: none;" id="enviar">Enviar</button>
+            <button style="display:none;" id="cancelar" onclick="cancelar()">Cancelar</button>
+        </form>
     </section>
 
 </body>

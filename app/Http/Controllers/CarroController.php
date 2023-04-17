@@ -7,7 +7,7 @@ use App\Models\Carro;
 
 class CarroController extends Controller
 {
-    public function index(){
+    public function list(){
         $carros = Carro::all();
         return view('carros.create',['carros' => $carros]);
     }
