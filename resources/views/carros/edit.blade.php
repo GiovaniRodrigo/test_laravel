@@ -34,7 +34,7 @@
                                 <td><input type="text" name="quantia" maxlength="250" value="{{ $carro->quantia }}"><br></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" value="Executar"></td>
+                                <td><input type="submit" value="Salvar"></td>
                             </tr>
                         </h4>
                     </table>

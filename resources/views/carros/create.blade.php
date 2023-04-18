@@ -37,7 +37,7 @@
                                 <td><input type="text" name="qnt_rodada" maxlength="250" value="0"><br></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" value="Executar"></td>
+                                <td><input type="submit" value="Salvar"></td>
                             </tr>
                         </h4>
                     </table>
