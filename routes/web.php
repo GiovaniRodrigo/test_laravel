@@ -15,3 +15,19 @@ Route::post('/carros',[CarroController::class,'store']);
 Route::delete('/carros/{id}',[CarroController::class,'destroy']);
 Route::get('/carros/edit/{id}',[CarroController::class,'edit']);
 Route::put('/carros/update/{id}',[CarroController::class,'update']);
+
+
+//Redefinir senha
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('main');
+    })->name('dashboard');
+});
