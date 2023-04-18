@@ -30,9 +30,9 @@
                 </div>
                 <div style="position:relative; left:100px;">
                     Qnt. gasta            </div>
-                <div style="position:relative; left:200px;">
+                <!--<div style="position:relative; left:200px;">
                     Qnt. do 1° abastecimento
-                </div>
+                </div>-->
                 <div style="position:relative; left:220px;">
                     Saldo do tanque
                 </div>
@@ -72,12 +72,11 @@
                                                     <div style="display:block; padding:10px;">
                                                         <input id="quantia-rodada" type="number" name="qnt_gasta" size="2" placeholder="{{$carro->qnt_gasta}}" style="">
                                                     </div>
-                                                    <div style="display:block; padding:10px;">
+                                                    <!--<div style="display:block; padding:10px;">
                                                         <input id="abastecer" type="number" name="qnt_abast1" size="2" placeholder="{{$carro->qnt_abast1}}" style="position: relative;left:20px;">
-                                                    </div>
+                                                    </div>-->
                                                     <div id="rodar" style="display:block;margin:5px;">
                                                         <!--$rodar = qauntia gasta - quantia total-->
-                                                        <?php echo $carro->saldo_tanque;?>
                                                         <input id="rodar" type="number" name="saldo_tanque" size="2" readonly placeholder="{{$carro->saldo_tanque}}">
                                                     </div>
                                                     <input id="quantia" type="number" name="quantia" placeholder="Exemplo: 5.5" size="2" >

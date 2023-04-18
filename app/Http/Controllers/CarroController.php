@@ -75,6 +75,6 @@ class CarroController extends Controller
             ]
         );
 
-        return redirect('/dasbhoard')->with('msg', 'Editado com sucesso!');
+        return redirect('/dashboard')->with('msg', 'Editado com sucesso!');
     }
 }
