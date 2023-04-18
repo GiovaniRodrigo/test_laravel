@@ -13,7 +13,7 @@
 
 
                     <a href="carros/create" style="position: relative; left:100%;"><button style="">Cadastrar novo</button></a>
-
+                    <a href="/logout/" style="position: relative; left:100%;"><button style="">Logout</button></a>
 
 
             </section>
