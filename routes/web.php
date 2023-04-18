@@ -20,9 +20,7 @@ Route::put('/carros/update/{id}',[CarroController::class,'update']);
 
 
 //Redefinir senha
-Route::get('/forgot-password', function () {
-    return view('auth.reset-password');
-})->middleware('guest')->name('password.request');
+Route::get('/forgot-password', [Auth::class,'reset'])->name('password.request');
 
 Route::middleware([
     'auth:sanctum',

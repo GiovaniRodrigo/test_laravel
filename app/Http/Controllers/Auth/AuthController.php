@@ -11,4 +11,5 @@ class AuthController extends Controller
 
         return view('reset-password',['request' => $request]);
     }
+
 }
