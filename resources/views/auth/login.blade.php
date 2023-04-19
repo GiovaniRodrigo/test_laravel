@@ -1,56 +1,61 @@
-<section style="position:relative; left:30%;">
-    <x-guest-layout>
-        <x-jet-authentication-card>
-            <x-slot name="logo">
-                <x-jet-authentication-card-logo />
-            </x-slot>
-
-            <x-jet-validation-errors class="mb-4" />
-
-            @if (session('status'))
-                <div class="mb-4 font-medium text-sm text-green-600">
-                    {{ session('status') }}
-                </div>
-            @endif
-
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-
-                <div>
-                    <x-jet-label for="email" value="{{ __('Email') }}" />
-                    <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-                </div>
-
-                <div class="mt-4">
-                    <x-jet-label for="password" value="{{ __('Password') }}" />
-                    <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-                </div>
-
-                <div class="block mt-4">
-                    <label for="remember_me" class="flex items-center">
-                        <x-jet-checkbox id="remember_me" name="remember" />
-                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                    </label>
-                </div>
-
-                <div class="flex items-center justify-end mt-4">
-
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request')}}">
-                            Esqueceu a senha?
-                        </a>
-
-
-                    <x-jet-button class="ml-4">
-                        {{ __('Log in') }}
-                    </x-jet-button>
-
-                </div>
-            </form>
-            <a href="/register" style="width: 100%">
-                <button >
-                    Cadastrar
-                </button>
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
-        </x-jet-authentication-card>
-    </x-guest-layout>
-</section>
+        </x-slot>
+
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <!-- Email Address -->
+            <div>
+                <x-label for="email" :value="__('Email')" />
+
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            </div>
+
+            <!-- Password -->
+            <div class="mt-4">
+                <x-label for="password" :value="__('Senha')" />
+
+                <x-input id="password" class="block mt-1 w-full"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password" />
+            </div>
+
+            <!-- Remember Me -->
+            <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Lembre-me') }}</span>
+                </label>
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+            <x-button class="ml-3">
+                    {{ __('Entrar') }}
+                </x-button>
+                @if (Route::has('password.request'))
+                </br>
+                </br>
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Esqueceu a senha?') }}
+                    </a>
+                    </br>
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                        {{ __('Cadastre-se') }}
+                    </a>
+                @endif
+            </div>
+        </form>
+    </x-auth-card>
+</x-guest-layout>
