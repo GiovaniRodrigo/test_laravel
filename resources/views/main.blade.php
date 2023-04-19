@@ -14,7 +14,10 @@
 
 
                     <a href="carros/create" style="position: relative; left:100%;"><button style="">Cadastrar novo</button></a>
-                    <a href="/logout/" style="position: relative; left:100%;"><button style="">Logout</button></a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
 
 
             </section>

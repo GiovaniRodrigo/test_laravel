@@ -30,13 +30,13 @@ class CarroController extends Controller
 
         $carro->save();
 
-        return redirect('/dashboard')->with('msg', 'Inclusão realizada!');
+        return redirect('/')->with('msg', 'Inclusão realizada!');
     }
 
     public function destroy($id){
         Carro::where('id',$id)->delete();
 
-        return redirect('/dashboard')->with('msg', 'Exclusão realizada!');
+        return redirect('/')->with('msg', 'Exclusão realizada!');
     }
 
     public function edit($id){
